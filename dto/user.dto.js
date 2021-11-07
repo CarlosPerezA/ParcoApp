@@ -1,31 +1,32 @@
 const Joi = require('joi');
 
 const id_usario = Joi.string().id();
-const nombre = Joi.string().alphanum().min(3);
-const telefono = Joi.number().integer().positive();
+const nombre = Joi.string().min(3);
+const telefono = Joi.string().pattern(/^[0-9]+$/, 'numbers').length(10);
 const correo = Joi.string().email();
-const contraseña = Joi.string().alphanum().min(8);
+const contrasena = Joi.string().alphanum().min(8);
 const abono = Joi.number().positive();
 const total = Joi.number().positive();
 const id_estacionamiento = Joi.string().id();
 
 const createUserDto = Joi.object({
-  nombre: nombre.require(),
+  nombre: nombre.required(),
   telefono: telefono.required(),
   correo: correo.required(),
-  contraseña: contraseña.require()
+  contrasena: contrasena.required()
 });
 
 const loginUserDto = Joi.object({
   correo: correo.required(),
-  contraseña: contraseña.required(),
+  contraseña: contrasena.required(),
 });
 
 const updateUserDto = Joi.object({
-  nombre: nombre.require(),
+  id: id_usario.required(),
+  nombre: nombre.required(),
   telefono: telefono.required(),
   correo: correo.required(),
-  contraseña: contraseña.require()
+  contraseña: contrasena.required()
 });
 
 const payBalanceDto = Joi.object({
