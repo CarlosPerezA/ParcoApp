@@ -1,11 +1,11 @@
 const Joi = require('joi');
 
-const id_usario = Joi.string().id();
+const id_usuario = Joi.string().id();
 const nombre = Joi.string().min(3);
 const telefono = Joi.string().pattern(/^[0-9]+$/, 'numbers').length(10);
 const correo = Joi.string().email();
 const contrasena = Joi.string().alphanum().min(8);
-const abono = Joi.number().positive();
+const saldo_disponible = Joi.number().positive().min(1);
 const total = Joi.number().positive();
 const id_estacionamiento = Joi.string().id();
 
@@ -22,33 +22,30 @@ const loginUserDto = Joi.object({
 });
 
 const updateUserDto = Joi.object({
-  id: id_usario.required(),
-  nombre: nombre.required(),
-  telefono: telefono.required(),
-  correo: correo.required(),
-  contraseña: contrasena.required()
+  nombre: nombre,
+  telefono: telefono,
+  correo: correo,
+  contrasena: contrasena
 });
 
-const payBalanceDto = Joi.object({
-  id_usario : id_usario.required(),
-  abono: abono.required(),
+const getUserDto = Joi.object({
+  id: id_usuario.required()
+});
+
+const addCreditDto = Joi.object({
+  saldo_disponible: saldo_disponible.required(),
 });
 
 const payParkingDto = Joi.object({
-  id_usario: id_usario.required(),
   total: total.required(),
   id_estacionamiento: id_estacionamiento.required(),
-});
-
-const filterdTransactions = Joi.object({
-  id_usario: id_usario.required(),
 });
 
 module.exports =
 { createUserDto,
   loginUserDto,
   updateUserDto,
-  payBalanceDto,
+  getUserDto,
+  addCreditDto,
   payParkingDto,
-  filterdTransactions
 }
