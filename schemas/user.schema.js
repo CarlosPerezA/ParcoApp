@@ -8,7 +8,9 @@ const userSchema = new Schema({
     correo: {type: String, trim: true, lowercase: true, unique: true},
     fecha_creacion: {type: Date, default: Date.now},
     contrasena: {type: String, required: true},
-    saldo_disponible: {type: Number, default: 0}
+    saldo_disponible: {type: Number, default: 0},
+    role: {type: String, trim: true ,default: 'user'},
+    accessToken: {type: String, trim: true, default: '0'}
 });
 
 const model = mongoose.model('Users', userSchema);

@@ -9,17 +9,21 @@ const saldo_disponible = Joi.number().positive().min(1);
 const total = Joi.number().positive();
 const id_estacionamiento = Joi.string().id();
 const boleto = Joi.string().pattern(/^[0-9]+$/, 'numbers').length(5);
+const role = Joi.string();
+const accessToken = Joi.string().alphanum();
 
 const createUserDto = Joi.object({
   nombre: nombre.required(),
   telefono: telefono.required(),
   correo: correo.required(),
-  contrasena: contrasena.required()
+  contrasena: contrasena.required(),
+  role: role,
+  accessToken: accessToken
 });
 
 const loginUserDto = Joi.object({
   correo: correo.required(),
-  contraseña: contrasena.required(),
+  contrasena: contrasena.required(),
 });
 
 const updateUserDto = Joi.object({

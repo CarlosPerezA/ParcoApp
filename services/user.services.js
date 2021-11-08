@@ -1,4 +1,3 @@
-const boom = require('@hapi/boom');
 const bcrypt = require('bcrypt');
 const userSchema = require('../schemas/user.schema');
 
@@ -13,6 +12,11 @@ class userServices {
   })
   const save = await newUser.save()
   return save;
+  }
+
+  async findByEmail(email){
+    const user = await userSchema.findOne({ correo: email });
+    return user;
   }
 
   async update(id, changes) {
@@ -36,6 +40,11 @@ class userServices {
       new: true
     });
     return addCredit;
+  }
+
+  async token(id,data){
+    const saveToken = userSchema.findByIdAndUpdate(id, {accessToken: data},{ new: true });
+    return saveToken;
   }
 
 }

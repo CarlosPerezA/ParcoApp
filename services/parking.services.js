@@ -47,7 +47,7 @@ class parkingServices {
   }
 
   async transactions(id_usuario){
-    const transactionById = await transactionsSchema.find(id_usuario);
+    const transactionById = transactionsSchema.find(id_usuario);
     return transactionById;
   }
 
