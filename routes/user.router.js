@@ -3,7 +3,9 @@ const router = express.Router();
 const validatorHandler = require('../middlewares/validator.handler');
 const userService = require('../services/user.services');
 const { createUserDto, loginUserDto, updateUserDto, getUserDto, addCreditDto } = require('../dto/user.dto');
-
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const { config } = require('../config/config');
 const service = new userService();
 
 router.post('/new',
@@ -19,17 +21,28 @@ async(req, res, next) => {
 });
 
 router.post('/login',
+passport.authenticate('local', { session: false }),
 validatorHandler(loginUserDto, 'body'),
 async(req, res, next) => {
   try {
-    const body = req.body;
-    res.status(200).json(body);
+    const user = req.user;
+    const payload = {
+      sub: user.id,
+      role: user.role
+    }
+  const accessToken = jwt.sign(payload, config.jwtSecret);
+  // eslint-disable-next-line no-unused-vars
+  const saveToken = await service.token(user.id,accessToken);
+    res.json({
+      accessToken
+    });
   } catch(error) {
     next(error);
   }
 });
 
 router.patch('/:id',
+passport.authenticate('jwt', { session: false }),
 validatorHandler(getUserDto, 'params'),
 validatorHandler(updateUserDto, 'body'),
 async(req, res, next) => {
@@ -44,6 +57,7 @@ async(req, res, next) => {
 });
 
 router.post('/addCredit/:id',
+passport.authenticate('jwt', { session: false }),
 validatorHandler(getUserDto, 'params'),
 validatorHandler(addCreditDto, 'body'),
 async (req, res, next) => {
