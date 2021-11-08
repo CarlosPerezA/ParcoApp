@@ -15,14 +15,6 @@ class userServices {
   return save;
   }
 
-  async findOne(id) {
-  const user = await userSchema.findById(id);
-  if(!user){
-    throw boom.notFound('User not found');
-  }
-  return user;
-  }
-
   async update(id, changes) {
   if(changes.contrasena) {
     const hashPass = await bcrypt.hash(changes.contrasena, 10);

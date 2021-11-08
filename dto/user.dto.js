@@ -8,6 +8,7 @@ const contrasena = Joi.string().alphanum().min(8);
 const saldo_disponible = Joi.number().positive().min(1);
 const total = Joi.number().positive();
 const id_estacionamiento = Joi.string().id();
+const boleto = Joi.string().pattern(/^[0-9]+$/, 'numbers').length(5);
 
 const createUserDto = Joi.object({
   nombre: nombre.required(),
@@ -37,8 +38,14 @@ const addCreditDto = Joi.object({
 });
 
 const payParkingDto = Joi.object({
+  id_usuario: id_usuario.required(),
   total: total.required(),
   id_estacionamiento: id_estacionamiento.required(),
+  boleto: boleto.required(),
+});
+
+const userTransactions = Joi.object({
+  id_usuario: id_usuario.required(),
 });
 
 module.exports =
@@ -48,4 +55,5 @@ module.exports =
   getUserDto,
   addCreditDto,
   payParkingDto,
+  userTransactions
 }

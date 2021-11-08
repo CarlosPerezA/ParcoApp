@@ -8,7 +8,7 @@
 
     Descripción
         ->  Desarrollar una API REST para realizar el pago de boletos de estacionamiento y generar reportes de los pagos.
-        
+
         Endpoints
             1) Endpoint para registrar nuevos usuarios.
                 Método: POST
@@ -39,9 +39,9 @@
 
             6) Endpoint para realizar pagos de estacionamientos.
                 Método: POST
-                Parámetros: id de usuario, monto a pagar, id de estacionamiento
+                Parámetros: id de usuario, total, id de estacionamiento, boleto
                 Respuesta: Todo el nuevo registro creado (id, total, boleto, fecha de creación, id de usuario, id de estacionamiento)
-   
+
             7) Endpoint para ver las transacciones filtradas por id de usuario.
                 Método: GET
                 Parámetros: Id de usuario
@@ -78,7 +78,7 @@
                 · Fecha de creación
                 · Contraseña
                 · Saldo disponible
-        
+
             * Transacción
                 · Id
                 · Total
@@ -86,15 +86,15 @@
                 · Fecha de creación
                 · Id de usuario
                 · Id de estacionamiento
-                
+
         ->Validar los parámetros de enpoints con Joi
-                
+
   Recomendaciones
         -> Utilizar la librería bcrypt para encryptar y verificar las credenciales de los usuarios antes de almacenarlas
         -> Usar la librería de axios para consultar servicios externos (lista de estacionamientos)
         -> Crear un middleware para verificar la autenticidad del token de acceso proporcionado en cada request que lo requiera.
         -> El token de acceso debe ser enviado a través de la URL, por ejemplo: https://ejemplo.com/api/usuario?access_token=Cadena_De_Texto_Arbitraria
-        
+
 
 
 
