@@ -11,6 +11,8 @@ const id_estacionamiento = Joi.string().id();
 const boleto = Joi.string().pattern(/^[0-9]+$/, 'numbers').length(5);
 const role = Joi.string();
 const accessToken = Joi.string().alphanum();
+const fecha_inicial = Joi.date();
+const fecha_final = Joi.date();
 
 const createUserDto = Joi.object({
   nombre: nombre.required(),
@@ -52,6 +54,12 @@ const userTransactions = Joi.object({
   id_usuario: id_usuario.required(),
 });
 
+const reportDto = Joi.object({
+  fecha_inicial: fecha_inicial.required(),
+  fecha_final: fecha_final.required(),
+  id_estacionamiento: id_estacionamiento
+});
+
 module.exports =
 { createUserDto,
   loginUserDto,
@@ -59,5 +67,6 @@ module.exports =
   getUserDto,
   addCreditDto,
   payParkingDto,
-  userTransactions
+  userTransactions,
+  reportDto
 }
