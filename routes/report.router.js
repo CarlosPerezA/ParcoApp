@@ -23,4 +23,16 @@ async(req, res, next) => {
   }
 });
 
+router.get('/users',
+passport.authenticate('jwt', { session: false }),
+checkAdminRole,
+async(req, res, next) => {
+  try {
+    const users = await service.consult();
+    res.json(users);
+  } catch(error) {
+    next(error);
+  }
+});
+
 module.exports = router;
