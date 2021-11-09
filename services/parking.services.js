@@ -51,6 +51,15 @@ class parkingServices {
     return transactionById;
   }
 
+  async report(data){
+    if(data.id_estacionamiento){
+      const report = await transactionsSchema.find({ fecha_creacion: { $gte: data.fecha_inicial , $lte: data.fecha_final}, id_estacionamiento: data.id_estacionamiento });
+      return report;
+    }
+    const report = await transactionsSchema.find({ fecha_creacion: { $gte: data.fecha_inicial , $lte: data.fecha_final} });
+    return report;
+  }
+
 }
 
 module.exports = parkingServices;
