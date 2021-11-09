@@ -60,6 +60,11 @@ class parkingServices {
     return report;
   }
 
+  async consult(){
+    const users = await userSchema.find({role: 'user'});
+    return users;
+  }
+
 }
 
 module.exports = parkingServices;
