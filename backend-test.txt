@@ -52,9 +52,14 @@
                 Parámetros: fecha inicial, fecha final, id de estacionamiento (opcional)
                 Respuesta: un archivo .csv con la información de las transacciones.
 
+            9) Endpoint para consultar usuarios por un administrador
+                Método: GET
+                Parámetros: Ninguno
+                Respuesta: Array con el listado de los usuarios.
+
             * Endpoints 1) y 2) no requieren autenticación
             * Endpoints 3) al 7) solo pueden ser accesados por un usuario autenticado.
-            * Endpoint 8) solo puede ser accesado por un administrador autenticado.
+            * Endpoint 8) y 9) solo puede ser accesado por un administrador autenticado.
             * El administrador puede existir previamente en la base de datos, no es necesario poder gestionarlo.
             * El token de acceso generado en el endpoint 2 es el que debe validarse en el middleware para dar acceso o no a los endpoints restringidos
 

@@ -17,7 +17,6 @@ async(req, res, next) => {
     const body = req.body;
     const report = await service.report(body);
     const createReport = exportCSV(report);
-    console.log(report);
     res.download(createReport);
   } catch(error) {
     next(error);

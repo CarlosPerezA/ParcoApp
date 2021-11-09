@@ -1,6 +1,7 @@
 const fastcsv = require("fast-csv");
 const fs = require("fs");
-const ws = fs.createWriteStream("./utils/exportCSV/transactions.csv");
+const date = new Date().toLocaleDateString();
+const ws = fs.createWriteStream(`./utils/exportCSV/transactions.csv`);
 
 const formatCSV = [
   {
