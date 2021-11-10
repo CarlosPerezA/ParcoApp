@@ -17,7 +17,7 @@ npm install
 ## Usage
 
 La distribucion de los ficheros quedo de la siguiente manera:
-
+```sh
 ParcoApp/
  |_index.js
  |_config/
@@ -58,18 +58,20 @@ Las tecnologias ocupadas son:
 -> Joi
 -> Passport
 -> Jwt
+```
 
 ## Endpoints
 
 Originalmente la solicitud fue de 8 endpoints, pero se agrego uno mas para observar el listado general de usuarios.
 
-Primer Endpoint
-            1)  Endpoint para registrar nuevos usuarios. 
-                URL: https://parco-api-test.herokuapp.com/api/v1/user/new
-                Método: POST
-                Parámetros: nombre, teléfono, correo, contraseña
-                Respuesta: Todo el nuevo registro creado (id, nombre, teléfono, correo, contraseña, fecha de creación, saldo disponible)
-                Autenticacion: No es necesario un Token
+Primer Endpoint.
+
+- Endpoint para registrar nuevos usuarios. 
+- URL: https://parco-api-test.herokuapp.com/api/v1/user/new
+- Método: POST
+- Parámetros: nombre, teléfono, correo, contraseña
+- Respuesta: Todo el nuevo registro creado (id, nombre, teléfono, correo, contraseña, fecha de creación, saldo disponible)
+- Autenticacion: No es necesario un Token
 
       ```sh
         Body:
@@ -97,14 +99,12 @@ Primer Endpoint
         }
       ```
 
-Segundo Endpoint
-            2) Endpoint para logear al usuario.
-                URL: https://parco-api-test.herokuapp.com/api/v1/user/login
-                Método: POST
-                Parámetros: correo, contraseña
-                Respuesta: {
-                    "accessToken": "3Gc60QmoQO0IqWnCH7Jh2O3kFjREjHDDshfcn4i0076GBwhja2TV17MDjyMIyKMD" (token de acceso generado, debe almacenarse en la base de datos)
-                }
+Segundo Endpoint.
+- Endpoint para logear al usuario.
+- URL: https://parco-api-test.herokuapp.com/api/v1/user/login
+- Método: POST
+- Parámetros: correo, contraseña
+- Respuesta: { "accessToken": "3Gc60QmoQO0IqWnCH7Jh2O3kFjREjHDDshfcn4i0076GBwhja2TV17MDjyMIyKMD" (token de acceso generado, debe almacenarse en la base de datos) }
 
       ```sh
         Body:
@@ -121,12 +121,12 @@ Segundo Endpoint
         }
       ```
 
-Tercer Endpoint
-            3) Endpoint para modificar los datos del usuarios.
-                URL:http://localhost:3000/api/v1/user/618acf2a936576f24b33ba8a?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThhY2YyYTkzNjU3NmYyNGIzM2JhOGEiLCJyb2xlIjoidXNlciIsImlhdCI6MTYzNjQ4Njk4MH0.BAie8C4YthX2trVLOz-ME2KuWO8J0ZnKRq-DYS_ryLQ
-                Método: PATCH
-                Parámetros: Los que deseen modificarse (en el caso de la contraseña, debe encriptarse nuevamente antes de sobreescribirse)
-                Respuesta: Todo el registro actualizado (id, nombre, teléfono, correo, contraseña, fecha de creación, saldo disponible)
+Tercer Endpoint.
+- Endpoint para modificar los datos del usuarios.
+- URL:http://localhost:3000/api/v1/user/618acf2a936576f24b33ba8a?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThhY2YyYTkzNjU3NmYyNGIzM2JhOGEiLCJyb2xlIjoidXNlciIsImlhdCI6MTYzNjQ4Njk4MH0.BAie8C4YthX2trVLOz-ME2KuWO8J0ZnKRq-DYS_ryLQ
+- Método: PATCH
+- Parámetros: Los que deseen modificarse (en el caso de la contraseña, debe encriptarse nuevamente antes de sobreescribirse)
+- Respuesta: Todo el registro actualizado (id, nombre, teléfono, correo, contraseña, fecha de creación, saldo disponible)
 
       ```sh
         Cualquier campo se actualiza, en caso de la contraseña, se vuelve a encriptar
@@ -153,11 +153,11 @@ Tercer Endpoint
       ```
 
 Cuarto Endpoint 
-            4) Endpoint para abonar saldo a usuario
-                URL: http://localhost:3000/api/v1/user/addCredit/618acf2a936576f24b33ba8a?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThhY2YyYTkzNjU3NmYyNGIzM2JhOGEiLCJyb2xlIjoidXNlciIsImlhdCI6MTYzNjQ4Njk4MH0.BAie8C4YthX2trVLOz-ME2KuWO8J0ZnKRq-DYS_ryLQ
-                Método: POST
-                Parámetros: id de usuario, monto a abonar
-                Respuesta: Todo el registro actualizado (id, nombre, teléfono, correo, contraseña, fecha de creación, saldo disponible)
+- Endpoint para abonar saldo a usuario
+- URL: http://localhost:3000/api/v1/user/addCredit/618acf2a936576f24b33ba8a?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThhY2YyYTkzNjU3NmYyNGIzM2JhOGEiLCJyb2xlIjoidXNlciIsImlhdCI6MTYzNjQ4Njk4MH0.BAie8C4YthX2trVLOz-ME2KuWO8J0ZnKRq-DYS_ryLQ
+- Método: POST
+- Parámetros: id de usuario, monto a abonar
+- Respuesta: Todo el registro actualizado (id, nombre, teléfono, correo, contraseña, fecha de creación, saldo disponible)
 
       ```sh
         Params:
@@ -186,18 +186,18 @@ Cuarto Endpoint
         }
       ```
 Quinto Endpoint
-            5) Endpoint para consultar la lista de estacionamientos.
-                URL: https://parco-api-test.herokuapp.com/api/v1/parking?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThhY2UwZjkzNjU3NmYyNGIzM2JhODUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzY0ODY4MTJ9.VqvK5nEivgiODuclbzfF8l3O5PkicSU-dvmqwtSDYn0
-                Método: GET
-                Parámetros: Ninguno
-                Respuesta: Lista de estacionamientos obtenida desde URL
+- Endpoint para consultar la lista de estacionamientos.
+- URL: https://parco-api-test.herokuapp.com/api/v1/parking?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThhY2UwZjkzNjU3NmYyNGIzM2JhODUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzY0ODY4MTJ9.VqvK5nEivgiODuclbzfF8l3O5PkicSU-dvmqwtSDYn0
+- Método: GET
+- Parámetros: Ninguno
+- Respuesta: Lista de estacionamientos obtenida desde URL
 
 Sexto Endpoint
-            6) Endpoint para realizar pagos de estacionamientos.
-                URL: https://parco-api-test.herokuapp.com/api/v1/parking/pay?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThhY2YyYTkzNjU3NmYyNGIzM2JhOGEiLCJyb2xlIjoidXNlciIsImlhdCI6MTYzNjQ4Njk4MH0.BAie8C4YthX2trVLOz-ME2KuWO8J0ZnKRq-DYS_ryLQ
-                Método: POST
-                Parámetros: id de usuario, total, id de estacionamiento, boleto
-                Respuesta: Todo el nuevo registro creado (id, total, boleto, fecha de creación, id de usuario, id de estacionamiento)
+- Endpoint para realizar pagos de estacionamientos.
+- URL: https://parco-api-test.herokuapp.com/api/v1/parking/pay?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThhY2YyYTkzNjU3NmYyNGIzM2JhOGEiLCJyb2xlIjoidXNlciIsImlhdCI6MTYzNjQ4Njk4MH0.BAie8C4YthX2trVLOz-ME2KuWO8J0ZnKRq-DYS_ryLQ
+- Método: POST
+- Parámetros: id de usuario, total, id de estacionamiento, boleto
+- Respuesta: Todo el nuevo registro creado (id, total, boleto, fecha de creación, id de usuario, id de estacionamiento)
 
 
       ```sh
@@ -223,11 +223,11 @@ Sexto Endpoint
         }
       ```
 Septimo Endpoint
-            7) Endpoint para ver las transacciones filtradas por id de usuario.
-                URL: https://parco-api-test.herokuapp.com/api/v1/parking/transactions?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThhY2UwZjkzNjU3NmYyNGIzM2JhODUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzY0ODY4MTJ9.VqvK5nEivgiODuclbzfF8l3O5PkicSU-dvmqwtSDYn0
-                Método: GET
-                Parámetros: Id de usuario
-                Respuesta: Array con todas las transacciones del usuario
+- Endpoint para ver las transacciones filtradas por id de usuario.
+- URL: https://parco-api-test.herokuapp.com/api/v1/parking/transactions?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThhY2UwZjkzNjU3NmYyNGIzM2JhODUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzY0ODY4MTJ9.VqvK5nEivgiODuclbzfF8l3O5PkicSU-dvmqwtSDYn0
+- Método: GET
+- Parámetros: Id de usuario
+- Respuesta: Array con todas las transacciones del usuario
 
 
       ```sh
@@ -288,11 +288,11 @@ Septimo Endpoint
         ] 
       ```
 Octavo Endpoint 
-                8) Endpoint para generar reporte de transacciones entre dos fechas o por estacionamiento y entre dos fechas en formato .csv
-                URL: https://parco-api-test.herokuapp.com/api/v1/report?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTg4OTI2NDkyZGVhOGQ5MDQwYjgxYjciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzY0MTE0NTd9.TLUbCqg0kaVBKgxMSGA1aTPGgudd5bm5Prga5l9aa1Y
-                Método: GET
-                Parámetros: fecha inicial, fecha final, id de estacionamiento (opcional)
-                Respuesta: un archivo .csv con la información de las transacciones.
+- Endpoint para generar reporte de transacciones entre dos fechas o por estacionamiento y entre dos fechas en formato .csv
+- URL: https://parco-api-test.herokuapp.com/api/v1/report?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTg4OTI2NDkyZGVhOGQ5MDQwYjgxYjciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzY0MTE0NTd9.TLUbCqg0kaVBKgxMSGA1aTPGgudd5bm5Prga5l9aa1Y
+- Método: GET
+- Parámetros: fecha inicial, fecha final, id de estacionamiento (opcional)
+- Respuesta: un archivo .csv con la información de las transacciones.
 
       ```sh
         Body:
@@ -315,11 +315,11 @@ Octavo Endpoint
       ```
 
 Noveno Endpoint EXTRA
-            9) Endpoint para consultar usuarios por un administrador autenticado
-                URL: https://parco-api-test.herokuapp.com/api/v1/report/users?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThhY2UwZjkzNjU3NmYyNGIzM2JhODUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzY0ODY4MTJ9.VqvK5nEivgiODuclbzfF8l3O5PkicSU-dvmqwtSDYn0
-                Método: GET
-                Parámetros: Ninguno
-                Respuesta: Array con el listado de los usuarios.
+- Endpoint para consultar usuarios por un administrador autenticado
+- URL: https://parco-api-test.herokuapp.com/api/v1/report/users?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThhY2UwZjkzNjU3NmYyNGIzM2JhODUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzY0ODY4MTJ9.VqvK5nEivgiODuclbzfF8l3O5PkicSU-dvmqwtSDYn0
+- Método: GET
+- Parámetros: Ninguno
+- Respuesta: Array con el listado de los usuarios.
 
       ```sh
         Respuesta:
