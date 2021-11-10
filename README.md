@@ -81,6 +81,14 @@ Primer Endpoint.
           "correo": "enrique@gmail.com",
           "contrasena": "12345678"
         }
+         Body para crear un administrador:
+        {
+          "nombre": "admin",
+          "telefono": "9211504047",
+          "correo": "admin@gmail.com",
+          "contrasena": "12345678"
+          "role": "admin"
+        }
       ```
 
       ```sh
