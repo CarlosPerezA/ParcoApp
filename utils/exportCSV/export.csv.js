@@ -3,7 +3,7 @@ const fs = require("fs");
 const date = new Date().toLocaleDateString();
 const ws = fs.createWriteStream(`./utils/exportCSV/transactions.csv`);
 
-const formatCSV = [
+let formatCSV = [
   {
     id: "id",
     total: "Total MXN",
@@ -16,12 +16,14 @@ const formatCSV = [
 
 function exportCSV(data){
   formatCSV.push(...data);
+  console.log(formatCSV);
 fastcsv
   .write(formatCSV, { headers: false })
   .on('finish', function() {
     console.log("Write to CSV successfully!");
   })
   .pipe(ws);
+
   return ws.path;
 }
 

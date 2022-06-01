@@ -9,13 +9,14 @@ const service = new parkingServices();
 const exportCSV = require('../utils/exportCSV/export.csv');
 
 router.get('/',
-passport.authenticate('jwt', { session: false }),
-checkAdminRole,
+//passport.authenticate('jwt', { session: false }),
+//checkAdminRole,
 validatorHandler(reportDto, 'body'),
 async(req, res, next) => {
   try {
     const body = req.body;
     const report = await service.report(body);
+    console.log(report);
     const createReport = exportCSV(report);
     res.download(createReport);
   } catch(error) {
